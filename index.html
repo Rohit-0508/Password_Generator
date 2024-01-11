@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+        <h1>Generate a<br>
+            <span>Random Password</span></h1>
+        <div class="display">
+            <input type="text" id="Password" placeholder="Password">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="copy" onclick="copy()">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
+            </svg>
+              
+            
+        </div>
+          
+        <button class="btn"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+          </svg>Generate Password</button>
+    
+            
+    
+    </div>
+    <script> 
+    
+        const passwordBox=document.getElementById('Password');
+        const btn= document.querySelector('.btn');
+        const length = 12;
+
+        btn.addEventListener('click',createPassword);
+
+
+        const uppercase="QWERTYUIOPASDFGHJKLZXCVBNM";
+        const lowercase="qwertyuiopasdfghjklzxcvbnm";
+        const number="0123456789";
+        const symbol="!@#$?&";
+        const allChars=lowercase+uppercase+number+symbol;
+
+        function createPassword(){
+            let Password='';
+            Password +=uppercase[Math.floor(Math.random()*uppercase.length)];
+            Password +=lowercase[Math.floor(Math.random()*lowercase.length)];
+            Password +=number[Math.floor(Math.random()*number.length)];
+            Password +=symbol[Math.floor(Math.random()*symbol.length)];
+            while(length > Password.length){
+                Password +=allChars[Math.floor(Math.random()*allChars.length)];
+            }
+            passwordBox.value = Password;
+
+
+        }
+        function copy(){
+            passwordBox.select();
+            document.execCommand('copy');
+        }
+    
+    </script>
+</body>
+</html>
